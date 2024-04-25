@@ -10,7 +10,7 @@ PREVIEW = Table('preview', metadata,
                 Column('user_days', String(100)),
                 Column('title', String(200)),
                 Column('desc', String(500)),
-                Column('url', String(100)),
+                Column('url', String(100), unique=True),
                 Column('actionInfo', String(100)),
                 Column('views', Integer)
                 )

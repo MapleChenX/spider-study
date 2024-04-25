@@ -1,0 +1,96 @@
+<h2>Windows 系统彻底卸载 SQL Server 通用方法</h2>
+<p>无论什么时候，SQL Server 的安装和卸载都是一件让我们头疼的事情。因为不管是 SQL Server 还是 MySQL 的数据库，当我们在使用数据库时因为未知原因出现问题，想要卸载重装时，如果数据库卸载不干净，就会导致数据库重装失败。所以学会卸载 SQL Server 还是很重要的，本篇文章以卸载 SQL Server 2012 为示例，其他版本卸载方法也都差不多。</p>
+<hr />
+<h4>文章目录</h4>
+<ul>
+<li><a href="#Windows__SQL_Server__0">Windows 系统彻底卸载 SQL Server 通用方法</a></li>
+<li><a href="#_SQL_Server__8">一、停止 SQL Server 服务</a></li>
+<li><a href="#_SQL_Server__20">二、卸载 SQL Server 数据库</a></li>
+<li><a href="#_SQL_Server__83">三、删除 SQL Server 相关文件</a></li>
+<li><a href="#_SQL_Server__111">四、删除 SQL Server 相关注册表</a></li>
+<li><a href="#_149">五、重启电脑</a></li>
+</ul>
+<hr />
+<h2>一、停止 SQL Server 服务</h2>
+<p>首先要把 SQL Server 的服务都关掉，通过 Windows 最下面搜索框搜索 【服务】 并打开（或者同时按住 Win + R 键，在弹出的运行框里面输入【services.msc】命令也可以进入到【服务】）</p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/51b3728b062e400a8d11359a8ecf40d6.jpeg#pic_center" /></p>
+<p>找到所有 SQL Server 的服务并全部停止 （不同的版本可能会有区别）<br />
+<img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/24fe406ecd2f4e24b2b2c10432d9f03f.jpeg#pic_center" /><br />
+ 鼠标【右键】-【停止】或 直接点击左边的【停止】，两种方式任选一种停止服务就行（后面需要删除 SQL Server 的文件夹，如果删除不成功就是 SQL Server 的服务没关掉）<br />
+<img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/dff370f80ce54457a1f16b8f0efad342.jpeg#pic_center" /></p>
+<hr />
+<h2>二、卸载 SQL Server 数据库</h2>
+<p>打开控制面板</p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/15a2017036de438eacd7d4be6203135d.jpeg#pic_center" /></p>
+<p>找到程序，点击【卸载程序】</p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/b088dcf1d8a3452cad1efd327416ae84.jpeg#pic_center" /></p>
+<p>找到 SQL Server 相关的应用程序（不同的版本可能会有区别）</p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/17c5878655134e0ab3e43fcf6331ac52.jpeg#pic_center" /></p>
+<p>先找到 Microsoft SQL Server 2012(64-bit) 鼠标【右键】-【卸载/更改】（其他版本找到对应的 (64位) 程序，如：SQL Server 2019 就找 Microsoft SQL Server 2019（64-bit））</p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/29a75fb156a64a4e974ad93f8d06b257.jpeg#pic_center" /></p>
+<p>在弹出的程序框里选择【删除】</p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/757ab749dfb74e4082122e05a0c09af7.jpeg#pic_center" /></p>
+<p>点击【确定】</p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/f9ac88a88bdd4c83b7c970308389d923.jpeg#pic_center" /></p>
+<p>选择实例，点击【下一步】<code>注：选择示例时，这里有多少个实例ID就删除多少次，如果有两个实例ID，删除完一轮后，需要重复一遍上一步的操作再回到这里再删除一遍，把实例一个一个全部删除!!!</code></p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/ec3b51f256c249c48a054f7cee411a89.jpeg#pic_center" /></p>
+<p>选择【全选】，然后点击【下一步】</p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/cc058b01c49149b4a1fdccd60d149f90.jpeg#pic_center" /></p>
+<p>点击【下一步】</p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/0da662af89c8411697423873bac39868.jpeg#pic_center" /></p>
+<p>点击【删除】</p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/099c02a887e04d2dbe792841d61558c2.jpeg#pic_center" /></p>
+<p>这里等它删除完</p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/73ffc8fbeb7d41c58a1aed3965527b10.jpeg#pic_center" /></p>
+<p>看一下状态是不是全部都【成功】了。如果全部都成功了，就直接点击【关闭】</p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/98d7db12802f405480dcfed775af316b.jpeg#pic_center" /><br />
+ 找到 Microsoft SQL Server 2012 Native Client 鼠标【右键】-【卸载】，在弹出的对话框中选择【是】（其他版本找对应的 Native Client 程序，如：SQL Server 2019 就找 Microsoft SQL Server 2019 Native Client）</p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/5b2a032c070f4bbab4f0b0cfe1011396.jpeg#pic_center" /><br />
+ 这里会弹出一个警告信息，不用管，直接选择【是】就行<br />
+<img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/c7056a8e2bcd4f878d15c5154d45f6fa.jpeg#pic_center" /></p>
+<p>最后把其他 SQL Server 的程序全部都【卸载】了</p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/e6b1642f584548449f2acd1cd6e38a1d.jpeg#pic_center" /></p>
+<p><code>注：一些版本的 SQL Server 如果还单独安装了 SQL Server Management Studio (SSMS) 管理工具，那么这个也要一起卸载掉</code></p>
+<hr />
+<h2>三、删除 SQL Server 相关文件</h2>
+<p><code>注：不同的版本可能会没有一些文件，没有的直接跳过就行</code></p>
+<p>找到自己的之前安装 Microsoft SQL Server 的目录（默认安装的在 C 盘）鼠标【右键】-【删除】，然后进入C:\Program Files 文件夹下，找到 Microsoft SQL Server 文件夹 鼠标【右键】-【删除】</p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/88c25b4aa293496185ea76966c0a1267.jpeg#pic_center" /></p>
+<p>进入 C:\Program Files (x86) 文件夹下，找到 Microsoft SQL Server 文件夹，鼠标【右键】-【删除】</p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/77911225d9a5499492e90ab7735722da.jpeg#pic_center" /></p>
+<p>进入 C:\Users\20972\AppData\Roaming\Microsoft 文件夹下（就是 C:\用户\你自己电脑的用户名\AppData\Roaming\Microsoft，这里我的用户名叫20972），找到 Microsoft SQL Server 文件夹 鼠标【右键】-【删除】</p>
+<p><code>注：因为 AppData 是一个隐藏的文件，所以需要显示隐藏的项目，就按照下面的操作就可以找到了</code></p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/9033bde4594b4fa5a01810f486d44ee0.jpeg#pic_center" /></p>
+<p>······</p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/8792fc5a7f8c4f949800c790b253a479.jpeg#pic_center" /></p>
+<p>在 C:\Users\20972\AppData\Roaming\Microsoft 文件夹下（就是刚刚这个文件夹下），找到 SQL Server Management Studio 文件夹 鼠标【右键】-【删除】</p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/6dc0abb16df44c959fbfc52cd89dbf5d.jpeg#pic_center" /></p>
+<hr />
+<h2>四、删除 SQL Server 相关注册表</h2>
+<p>直接在电脑左下角 Windows 【开始】图标上鼠标【右键】-【运行】（或者同时按住 Win + R 键），在弹出的运行框中输入【<a href="https://so.csdn.net/so/search?q=regedit&amp;spm=1001.2101.3001.7020">regedit</a>】-【确定】打开【注册表】</p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/ad2ffab5ee1c496595e31f7e8028928b.jpeg#pic_center" /></p>
+<p>······</p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/b7912545452946299d450e84820c73d2.jpeg#pic_center" /></p>
+<p>找到 <strong>HKEY_LOCAL_MACHINE</strong> \SYSTEM\CurrentControlSet\Control 并展开</p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/7880e16eb028455283770bcf08baf237.jpeg#pic_center" /></p>
+<p>在刚刚展开的列表里面找到 Session Manager ，在右边找到 PendingFileRenameOperations 鼠标【右键】-【删除】</p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/42b247444d364942970c94ea1a09b1f4.jpeg#pic_center" /></p>
+<p><code>注：这个一定要删除，不然后面重装 SQL Server 的时候就会出现【重新启动计算机失败】示例如下：</code></p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/5a86ca68ef1e4fb0a668030c75947642.jpeg#pic_center" /><br />
+ 然后找到 <strong>HKEY_LOCAL_MACHINE</strong> \SOFTWARE\Microsoft 并展开</p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/8bfe22a745c14f878dcf6ad6a7bc2080.jpeg#pic_center" /></p>
+<p>找到所有与 SQL Server 相关的项，鼠标【右键】-【删除】</p>
+<p><code>注：每个人的可能会有不同，顺着列表看一下，只要是带有 SQL Server 的都要删除掉</code></p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/447402d3c7ab4dcfb3c28175201de4fc.jpeg#pic_center" /><br />
+ 然后按照相同的方法删除 <strong>HKEY_CURRENT_USER</strong> 下面的 SQL Server 相关的内容：</p>
+<p><code>注：根据自己的电脑情况看，如果还有其他与 SQL Server 相关的项也要全部删除</code></p>
+<p><strong>HKEY_CURRENT_USER</strong> \SOFTWARE\Microsoft\ Microsoft SQL Server<br />
+<strong>HKEY_CURRENT_USER</strong> \SOFTWARE\Microsoft\ SQL Server Management Studio</p>
+<hr />
+<h2>五、重启电脑</h2>
+<p>做完上面所有的操作之后，一定要重启电脑。<br />
+ 重启电脑完成后 SQL Server 就彻底从电脑上卸载干净了。<br />
+ 后面再重新安装也不会有什么问题了。</p>
+<hr />
+<p>如果文章对各位小伙伴有帮助的话欢迎三连！！！</p>
+<p>另外，文章如有错误之处，也欢迎各位大佬批评指正！！！</p>

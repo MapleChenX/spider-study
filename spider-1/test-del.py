@@ -1,14 +1,10 @@
-import json
+import markdown
 
-import redis
+file = open("test.md", "r", encoding="utf-8").read()
 
-r = redis.Redis(host='localhost', port=6379, db=0)
+h = markdown.markdown(file)
 
-def top10():
-    result = r.zrevrange('csdn', 0, 9)
-    for item in result:
-        item_json = json.loads(item)
-        print(item_json['title'])
-        print(item_json['views'])
-        print(item_json['url'])
-top10()
+with open("h.html", "w", encoding="utf-8") as f:
+    f.write(h)
+
+
